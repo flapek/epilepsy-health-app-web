@@ -6,7 +6,7 @@ import './style/App.css'
 export default function App() {
   return (
     <Router>
-      <div className="Container">
+      <div className="container">
         <Header/>
         <Body/>
       </div>

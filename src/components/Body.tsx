@@ -4,6 +4,7 @@ import About from './About';
 import Login from './Login';
 import Register from './Register';
 import NotFound from './404NotFound';
+import ForgetPassword from "./ForgetPassword";
 
 const routes = [
     {
@@ -23,6 +24,10 @@ const routes = [
         component: Register
     },
     {
+        path: "/forgetPassword",
+        component: ForgetPassword
+    },
+    {
         path: "*",
         component: NotFound
     }
@@ -31,11 +36,9 @@ const routes = [
 export default function Body() {
     return (
         <Switch>
-            {routes.map((route, i)=>{
+            {routes.map(({path, component}, i)=>{
                 return (
-                    <Route key={i} path={route.path} render={() => (
-                        <route.component />
-                    )}/>
+                    <Route exact key={i} path={path} component={component}/>
                 );
             })}
         </Switch>

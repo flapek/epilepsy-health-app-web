@@ -27,12 +27,12 @@ const links = [
 
 export default function Header() {
     return(
-        <div className="PositionRelative">
-            <header className="HeaderContainer">
+        <div className="position-relative">
+            <header className="header-container">
                 <nav className="d-flex">
                     {links.map((link, i)=>{
                         return (
-                            <Link key={i} className="NavItem" to={link.to}>{link.label}</Link>
+                            <Link key={i} className="nav-item" to={link.to}>{link.label}</Link>
                         );
                     })}
                 </nav>
