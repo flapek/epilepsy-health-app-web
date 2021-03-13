@@ -1,3 +1,11 @@
 .PositionRelative {
   position: relative !important;
 }
+
+.d-flex {
+  display: flex !important;
+}
+
+.NavItem {
+  margin: 10px;
+}
