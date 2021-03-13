@@ -4,24 +4,24 @@ import '../style/CommonStyle.css'
 
 const links = [
     {
-        className: "Link",
         to: "/",
         label: "Home"
     },
     {
-        className: "Link",
         to: "/about",
         label: "About"
     },
     {
-        className: "Link",
         to: "/login",
         label: "Sign In"
     },
     {
-        className: "Link",
         to: "/register",
         label: "Sign Up"
+    },
+    {
+        to: "/account",
+        label: "Account"
     }
 ]
 
@@ -29,12 +29,13 @@ export default function Header() {
     return(
         <div className="PositionRelative">
             <header className="HeaderContainer">
-                {links.map((link, i)=>{
-                    return (
-                        <Link key={i} className={link.className} to={link.to}>{link.label}</Link>
+                <nav className="d-flex">
+                    {links.map((link, i)=>{
+                        return (
+                            <Link key={i} className="NavItem" to={link.to}>{link.label}</Link>
                         );
                     })}
-                <hr />
+                </nav>
             </header>
         </div>
     );
