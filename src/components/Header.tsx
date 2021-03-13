@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import '../style/HeaderStyle.css'
+import '../style/CommonStyle.css'
 
 const links = [
     {
@@ -26,13 +27,15 @@ const links = [
 
 export default function Header() {
     return(
-        <header className="HeaderContainer">
-            {links.map((link, i)=>{
-                return (
-                    <Link key={i} className={link.className} to={link.to}>{link.label}</Link>
-                );
-            })}
-            <hr />
-        </header>
+        <div className="PositionRelative">
+            <header className="HeaderContainer">
+                {links.map((link, i)=>{
+                    return (
+                        <Link key={i} className={link.className} to={link.to}>{link.label}</Link>
+                        );
+                    })}
+                <hr />
+            </header>
+        </div>
     );
 }
