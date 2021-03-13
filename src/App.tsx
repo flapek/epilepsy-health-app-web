@@ -1,10 +1,6 @@
-import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Home from './components/Home';
-import About from './components/About';
-import Login from './components/Login';
-import Register from './components/Register';
+import { BrowserRouter as Router } from "react-router-dom";
 import Header from './components/Header';
+import Body from './components/Body';
 import './style/App.css'
 
 export default function App() {
@@ -12,21 +8,7 @@ export default function App() {
     <Router>
       <div className="Container">
         <Header/>
-
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/register">
-            <Register />
-          </Route>
-        </Switch> 
+        <Body/>
       </div>
     </Router>
   );
