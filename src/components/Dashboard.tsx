@@ -1,5 +1,5 @@
 import React from "react";
-import { ResizableBox as ReactResizableBox } from "react-resizable";
+import { ResizableBox } from "react-resizable";
 
 import "react-resizable/css/styles.css";
 
@@ -7,23 +7,21 @@ export default function Dashboard({
   width = 500,
   height = 300,
   resizable = true,
-  style = {},
-  className
+  style = {}
 }) {
   return (
     <div>
       {resizable ? (
-        <ReactResizableBox width={width} height={height}>
+        <ResizableBox width={width} height={height}>
           <div
             style={{
               ...style,
               width: "100%",
               height: "100%"
             }}
-            className={className}
           >
           </div>
-        </ReactResizableBox>
+        </ResizableBox>
       ) : (
         <div
           style={{
@@ -31,7 +29,6 @@ export default function Dashboard({
             height: `${height}px`,
             ...style
           }}
-          className={className}
         >
         </div>
       )}
