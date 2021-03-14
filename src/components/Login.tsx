@@ -20,7 +20,7 @@ export default function Login() {
     return (
     <div className="form-container">
         <form>
-            <h1>Sing in</h1>
+            <h1>Sing In</h1>
             <input ref={email} type="text" placeholder="E-mail"/>
             <input ref={password} type="password" placeholder="Password"/>
             <Link to="/forgetPassword">Forgot your password?</Link>

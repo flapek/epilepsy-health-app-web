@@ -3,6 +3,7 @@ import About from '../components/About';
 import Login from '../components/Login';
 import Register from '../components/Register';
 import NotFound from '../components/404NotFound';
+import Dashboards from '../components/Dashboards';
 import ForgetPassword from "../components/ForgetPassword";
 
 export const routes = [
@@ -13,6 +14,10 @@ export const routes = [
     {
         path: "/about",
         component: About
+    },
+    {
+        path: "/dashboards",
+        component: Dashboards
     },
     {
         path: "/login",
@@ -36,6 +41,10 @@ export const links = [
     {
         to: "/",
         label: "Home"
+    },
+    {
+        to: "/dashboards",
+        label: "Dashboards"
     },
     {
         to: "/about",
