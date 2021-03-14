@@ -1,29 +1,7 @@
 import { Link } from "react-router-dom";
+import { links } from  '../common/Common'
 import '../style/HeaderStyle.css'
 import '../style/CommonStyle.css'
-
-const links = [
-    {
-        to: "/",
-        label: "Home"
-    },
-    {
-        to: "/about",
-        label: "About"
-    },
-    {
-        to: "/login",
-        label: "Sign In"
-    },
-    {
-        to: "/register",
-        label: "Sign Up"
-    },
-    {
-        to: "/account",
-        label: "Account"
-    }
-]
 
 export default function Header() {
     return(
