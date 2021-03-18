@@ -1,20 +1,17 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { connect } from "react-redux";
+import { loginAction } from "../actions/loginAction";
+import loginModel  from "../models/loginModel";
 import '../style/CommonStyle.css'
 import '../style/LoginStyle.css'
 
-export default function Login() {
+function Login() {
     let email = React.createRef<HTMLInputElement>();
     let password = React.createRef<HTMLInputElement>();
 
     function Login() {
-        console.log(email.current?.value)
-        if (email.current?.value === 'email@email.com' && password.current?.value === 'password') {
-            console.log("is logged")
-        }
-        else {
-            console.log("bad password")
-        }
+        loginAction(email.current?.value ?? "", password.current?.value ?? "")
     }
 
     return (
@@ -29,3 +26,12 @@ export default function Login() {
     </div>
     );
 }
+
+const mapStateToProps = (state: loginModel) => ({ email: state.email, password: state.password });
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    loginAction: (payload: loginModel) => dispatch(loginAction(payload.email, payload.password))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
