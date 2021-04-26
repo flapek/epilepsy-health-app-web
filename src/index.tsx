@@ -2,11 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import RootStore from './store/rootStore';
 import './style/index.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <RootStore>
+      <App />
+    </RootStore>
   </React.StrictMode>,
   document.getElementById('root')
 );

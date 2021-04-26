@@ -1,8 +1,5 @@
 import { Link } from 'react-router-dom';
-import React, { useState } from "react";
-import { connect } from "react-redux";
-import { loginAction } from "../actions/loginAction";
-import loginModel  from "../models/loginModel";
+import React from "react";
 import '../style/CommonStyle.css'
 import '../style/LoginStyle.css'
 
@@ -11,7 +8,7 @@ function Login() {
     let password = React.createRef<HTMLInputElement>();
 
     function Login() {
-        loginAction(email.current?.value ?? "", password.current?.value ?? "")
+        // loginAction(email.current?.value ?? "", password.current?.value ?? "")
     }
 
     return (
@@ -25,13 +22,6 @@ function Login() {
         </form>
     </div>
     );
-}
-
-const mapStateToProps = (state: loginModel) => ({ email: state.email, password: state.password });
-const mapDispatchToProps = (dispatch: any) => {
-  return {
-    loginAction: (payload: loginModel) => dispatch(loginAction(payload.email, payload.password))
-  };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default Login;
