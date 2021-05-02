@@ -1,11 +1,19 @@
+import { makeStyles } from "@material-ui/core";
 import { useLocation } from "react-router-dom";
-import '../style/404NotFoundStyle.css'
+
+const useStyles = makeStyles({
+    notFound: {
+        fontSize: "40px",
+        textAlign: "center"
+    },
+});
 
 export default function NotFound() {
     let location = useLocation();
-  
+    const classes = useStyles();
+
     return (
-    <div className="not-found">
+    <div className={classes.notFound}>
         <h2>404</h2>
         <h3>
             No match for <code>{location.pathname}</code>

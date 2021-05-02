@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import React from "react";
 import '../style/CommonStyle.css'
-import '../style/LoginStyle.css'
 
 function Login() {
     let email = React.createRef<HTMLInputElement>();
