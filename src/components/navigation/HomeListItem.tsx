@@ -5,7 +5,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import HomeIcon from '@material-ui/icons/Home';
 
 const HomeListItem = withRouter(({ history }) => (
-    <ListItem button onClick={() => history.push('/home') }>
+    <ListItem button onClick={() => history.push('/') }>
       <ListItemIcon>
         <HomeIcon />
       </ListItemIcon>
