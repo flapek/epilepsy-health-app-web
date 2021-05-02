@@ -6,6 +6,7 @@ import PeopleIcon from '@material-ui/icons/People';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import LayersIcon from '@material-ui/icons/Layers';
 import HomeIcon from '@material-ui/icons/Home';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 const Navigation = () => (
   <>
@@ -35,7 +36,7 @@ const Navigation = () => (
     </ListItem>
     <ListItem button>
       <ListItemIcon>
-        <LayersIcon />
+        <AccountCircleIcon />
       </ListItemIcon>
       <ListItemText primary="Account" />
     </ListItem>
