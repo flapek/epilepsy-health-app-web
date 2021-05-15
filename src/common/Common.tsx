@@ -1,15 +1,20 @@
 import Home from '../components/Home';
-import Login from '../components/Login';
 import NotFound from '../components/404NotFound';
+import SignIn from '../features/authorization/component/SignIn';
+import SignUp from '../features/authorization/component/SignUp';
 
 export const paths = {
+    signIn: {
+        path: "/signIn",
+        displayName: "Sign In"
+    },
+    signUp: {
+        path: "/signUp",
+        displayName: "Sign Up"
+    },
     home: {
         path: "/",
         displayName: "Home"
-    },
-    login: {
-        path: "/login",
-        displayName: "Login"
     },
     dashboard: {
         path: "/dashboard",
@@ -26,6 +31,14 @@ export const paths = {
 }
 
 export const routes = [
+    {
+        path: paths.signIn.path,
+        component: SignIn
+    },
+    {
+        path: paths.signUp.path,
+        component: SignUp
+    },
     {
         path: paths.home.path,
         component: Home

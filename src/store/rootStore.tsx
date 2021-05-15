@@ -1,10 +1,10 @@
 import React, { createContext } from "react";
-import LoginContext from "../features/login/loginContext";
-import { LoginStoreSchema } from "../features/login/loginType";
+import LoginContext from "../features/authorization/signInContext";
+import { SignInStoreSchema } from "../features/authorization/signInType";
 
 
 type RootStoreSchema = {
-    loginStore: LoginStoreSchema;
+    loginStore: SignInStoreSchema;
 };
 
 export const RootStoreContext = createContext<RootStoreSchema>(null);

@@ -1,7 +1,7 @@
-import { LoginStoreSchema, LoginType } from "./loginType";
+import { SignInStoreSchema, SignInType as SignInType } from "./signInType";
 import { useLocalObservable } from "mobx-react-lite";
 
-const initialValues: LoginType = {
+const initialValues: SignInType = {
   isLoading: false,
   error: "",
   isLoggedIn: false,
@@ -17,7 +17,7 @@ const LoginContext = () => {
     store.setIsLoggedInAction();
   }
 
-  const store = useLocalObservable<LoginStoreSchema>(() => ({
+  const store = useLocalObservable<SignInStoreSchema>(() => ({
     /*observables*/
     ...initialValues,
 
@@ -30,7 +30,7 @@ const LoginContext = () => {
     },
 
     /*asynchronous actions*/
-    async postLoginAction(username: string, password: string) {
+    async postSignInAction(username: string, password: string) {
       await executeAction(async () => {
         
       });
@@ -46,7 +46,7 @@ const LoginContext = () => {
       });
     },
 
-    async postLogoutAction() {
+    async postSignOutAction() {
       await executeAction(async () => {
         
       });
