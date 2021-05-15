@@ -1,60 +1,45 @@
 import Home from '../components/Home';
-import About from '../components/About';
 import Login from '../components/Login';
-import Register from '../components/Register';
 import NotFound from '../components/404NotFound';
-import ForgetPassword from "../components/ForgetPassword";
+
+export const paths = {
+    home: {
+        path: "/",
+        displayName: "Home"
+    },
+    login: {
+        path: "/login",
+        displayName: "Login"
+    },
+    dashboard: {
+        path: "/dashboard",
+        displayName: "Dashboard"
+    },
+    account: {
+        path: "/account",
+        displayName: "Account"
+    },
+    notFound: {
+        path: "*",
+        displayName: "Not found"
+    },
+}
 
 export const routes = [
     {
-        path: "/",
+        path: paths.home.path,
         component: Home
     },
     {
-        path: "/about",
-        component: About
-    },
-    {
-        path: "/login",
-        component: Login
-    },
-    {
-        path: "/register",
-        component: Register
-    },
-    {
-        path: "/forgetPassword",
-        component: ForgetPassword
-    },
-    {
-        path: "*",
+        path: paths.dashboard.path,
         component: NotFound
-    }
-];
-
-export const links = [
-    {
-        to: "/",
-        label: "Home"
     },
     {
-        to: "/dashboards",
-        label: "Dashboards"
+        path: paths.account.path,
+        component: NotFound
     },
     {
-        to: "/about",
-        label: "About"
-    },
-    {
-        to: "/login",
-        label: "Sign In"
-    },
-    {
-        to: "/register",
-        label: "Sign Up"
-    },
-    {
-        to: "/account",
-        label: "Account"
+        path: paths.notFound.path,
+        component: NotFound
     }
 ];

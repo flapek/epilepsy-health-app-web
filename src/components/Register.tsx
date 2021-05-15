@@ -1,5 +1,4 @@
 import React from "react";
-import '../style/CommonStyle.css'
 
 export default function Register() {
     let email = React.createRef<HTMLInputElement>();

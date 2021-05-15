@@ -1,5 +1,4 @@
 import React from 'react';
-import '../style/CommonStyle.css'
 
 export default function ForgetPassword() {
     return (

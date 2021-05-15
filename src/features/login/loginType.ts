@@ -5,7 +5,6 @@ export type LoginType = {
     myId: number,
 };
 
-
 export type LoginActionType = {
     setErrorAction: (error: any) => void;
     setIsLoadingAction:(isLoading: boolean) => void;

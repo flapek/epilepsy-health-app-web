@@ -3,9 +3,10 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import DashboardIcon from '@material-ui/icons/Dashboard';
+import { paths } from "../../common/Common";
 
 const DashboardsListItem = withRouter(({ history }) => (
-    <ListItem button onClick={() => history.push('/dashboards') }>
+    <ListItem button onClick={() => history.push(paths.dashboard.path) }>
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
