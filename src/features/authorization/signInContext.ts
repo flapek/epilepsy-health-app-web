@@ -1,4 +1,4 @@
-import { SignInStoreSchema, SignInType as SignInType } from "./signInType";
+import { SignInStoreSchema, SignInType } from "./signInType";
 import { useLocalObservable } from "mobx-react-lite";
 
 const initialValues: SignInType = {

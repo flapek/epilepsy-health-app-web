@@ -87,12 +87,12 @@ export default function SignIn({ signInClick, forgetPasswordClick, signUpClick }
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link href="#" variant="body2" onClick={() => forgetPasswordClick()}>
+              <Link variant="body2" onClick={() => forgetPasswordClick()}>
                 Forgot password?
               </Link>
             </Grid>
             <Grid item>
-              <Link href="#" variant="body2" onClick={() => signUpClick()}>
+              <Link variant="body2" onClick={() => signUpClick()}>
                 Don't have an account? Sign Up
               </Link>
             </Grid>
