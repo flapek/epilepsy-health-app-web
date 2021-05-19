@@ -7,44 +7,25 @@ import SignIn from "./features/authorization/component/SignIn";
 import SignUp from "./features/authorization/component/SignUp";
 import { RootStoreContext } from "./store/rootStore";
 
-const initialState = {
-  isSignInPanel: true,
-  isSignUpPanel: false,
-}
-
 const App = observer(() => {
   const store = useContext(RootStoreContext)
-  const [state, setState] = useState(initialState)
+  const [isSignInPanel, setIsSignInPanel] = useState(true)
 
   const signInClick = (): React.MouseEventHandler<HTMLButtonElement> => {
-    setState({
-      isSignInPanel: true,
-      isSignUpPanel: false,
-    })
+    setIsSignInPanel(true)
     return;
   }
-  const forgetPasswordClick = (): React.MouseEventHandler<HTMLAnchorElement> & React.MouseEventHandler<HTMLSpanElement> => {
-    setState({
-      isSignInPanel: false,
-      isSignUpPanel: false,
-    })
-    return;
-  }
+  
   const signUpClick = (): React.MouseEventHandler<HTMLAnchorElement> & React.MouseEventHandler<HTMLSpanElement> => {
-    setState({
-      isSignInPanel: false,
-      isSignUpPanel: true,
-    })
+    setIsSignInPanel(false)
     return;
   }
 
   const before = () => {
-    if (state.isSignInPanel && !state.isSignUpPanel)
-      return <SignIn signInClick={signInClick} forgetPasswordClick={forgetPasswordClick} signUpClick={signUpClick}/>;
-    else if (!state.isSignInPanel && state.isSignUpPanel)
+    if (isSignInPanel)
+      return <SignIn signInClick={signInClick} signUpClick={signUpClick}/>;
+    else if (!isSignInPanel)
       return <SignUp signInClick={signInClick} signUpClick={signUpClick}/>;
-    else
-      return <div/>; 
   };
 
   return (
