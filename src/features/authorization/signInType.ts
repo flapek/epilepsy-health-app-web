@@ -8,7 +8,7 @@ export type SignInType = {
 export type SignInActionType = {
     setErrorAction: (error: any) => void;
     setIsLoadingAction:(isLoading: boolean) => void;
-    postSignInAction: (username: string, password:string) => void;  
+    postSignInAction: (email: string, password:string) => void;  
     postSignOutAction: () => void;  
     setIsLoggedInAction: () => void; 
 };
