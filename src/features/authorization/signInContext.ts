@@ -30,30 +30,20 @@ const LoginContext = () => {
     },
 
     /*asynchronous actions*/
-    async postSignInAction(username: string, password: string) {
+    async postSignInAction(email: string, password: string) {
       await executeAction(async () => {
-        
-      });
-    },
-
-    async postChooseDeviceAction(
-      username: string,
-      password: string,
-      selectedDeviceId: number
-    ) {
-      await executeAction(async () => {
-        
+        store.setIsLoggedInAction();
       });
     },
 
     async postSignOutAction() {
       await executeAction(async () => {
-        
+        store.setIsLoggedInAction();
       });
     },
 
     setIsLoggedInAction() {
-      
+      store.isLoggedIn = !store.isLoggedIn;
     },
   }));
 
