@@ -10,6 +10,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { useState } from 'react';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -31,14 +32,27 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const initialState = {
+  email: "",
+  password: ""
+}
+
 interface Props {
-  signInClick: () => React.MouseEventHandler<HTMLButtonElement>,
+  signInClick: (email: string, password: string) => React.MouseEventHandler<HTMLButtonElement>,
   signUpClick: () => React.MouseEventHandler<HTMLAnchorElement> & React.MouseEventHandler<HTMLSpanElement>,
 }
 
-
 export default function SignIn({ signInClick, signUpClick }: Props) {
   const classes = useStyles();
+  const [state, setState] = useState(initialState)
+
+  const handleEmailChange = (e) => {
+    setState({...state, email: e.target.value})
+  }
+
+  const handlePasswordChange = (e) => {
+    setState({...state, password: e.target.value})
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -60,7 +74,8 @@ export default function SignIn({ signInClick, signUpClick }: Props) {
             label="Email Address"
             name="email"
             autoComplete="email"
-            autoFocus />
+            autoFocus 
+            onChange={handleEmailChange} />
           <TextField
             variant="outlined"
             margin="normal"
@@ -70,7 +85,8 @@ export default function SignIn({ signInClick, signUpClick }: Props) {
             label="Password"
             type="password"
             id="password"
-            autoComplete="current-password" />
+            autoComplete="current-password" 
+            onChange={handlePasswordChange}/>
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me" />
@@ -80,7 +96,7 @@ export default function SignIn({ signInClick, signUpClick }: Props) {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={() => signInClick()}
+            onClick={() => signInClick(state.email, state.password)}
           >
             Sign In
           </Button>
