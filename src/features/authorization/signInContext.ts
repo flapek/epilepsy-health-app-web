@@ -14,7 +14,6 @@ const LoginContext = () => {
     store.setIsLoadingAction(true);
     await callback();
     store.setIsLoadingAction(false);
-    store.setIsLoggedInAction();
   }
 
   const store = useLocalObservable<SignInStoreSchema>(() => ({
@@ -32,18 +31,18 @@ const LoginContext = () => {
     /*asynchronous actions*/
     async postSignInAction(email: string, password: string) {
       await executeAction(async () => {
-        store.setIsLoggedInAction();
+        store.setIsLoggedInAction(true);
       });
     },
 
     async postSignOutAction() {
       await executeAction(async () => {
-        store.setIsLoggedInAction();
+        store.setIsLoggedInAction(false);
       });
     },
 
-    setIsLoggedInAction() {
-      store.isLoggedIn = !store.isLoggedIn;
+    setIsLoggedInAction(value: boolean) {
+      store.isLoggedIn = value;
     },
   }));
 
