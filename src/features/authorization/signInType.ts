@@ -10,7 +10,7 @@ export type SignInActionType = {
     setIsLoadingAction:(isLoading: boolean) => void;
     postSignInAction: (email: string, password:string) => void;  
     postSignOutAction: () => void;  
-    setIsLoggedInAction: () => void; 
+    setIsLoggedInAction: (value: boolean) => void; 
 };
 
 export type SignInStoreSchema = {} & SignInType & SignInActionType
