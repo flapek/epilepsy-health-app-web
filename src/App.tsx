@@ -11,8 +11,14 @@ const App = observer(() => {
   const store = useContext(RootStoreContext)
   const [isSignInPanel, setIsSignInPanel] = useState(true)
 
-  const signInClick = (): React.MouseEventHandler<HTMLButtonElement> => {
-    setIsSignInPanel(true)
+  const signInClick = (email: string, password: string): React.MouseEventHandler<HTMLButtonElement> => {
+    setIsSignInPanel(true);
+    store.loginStore.postSignInAction(email, password)
+    return;
+  }
+
+  const signInClick2 = (): React.MouseEventHandler<HTMLButtonElement> => {
+    setIsSignInPanel(true);
     return;
   }
   
@@ -25,7 +31,7 @@ const App = observer(() => {
     if (isSignInPanel)
       return <SignIn signInClick={signInClick} signUpClick={signUpClick}/>;
     else if (!isSignInPanel)
-      return <SignUp signInClick={signInClick} signUpClick={signUpClick}/>;
+      return <SignUp signInClick={signInClick2} signUpClick={signUpClick}/>;
   };
 
   return (
