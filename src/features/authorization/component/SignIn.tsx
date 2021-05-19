@@ -33,12 +33,11 @@ const useStyles = makeStyles((theme) => ({
 
 interface Props {
   signInClick: () => React.MouseEventHandler<HTMLButtonElement>,
-  forgetPasswordClick: () => React.MouseEventHandler<HTMLAnchorElement> & React.MouseEventHandler<HTMLSpanElement>,
   signUpClick: () => React.MouseEventHandler<HTMLAnchorElement> & React.MouseEventHandler<HTMLSpanElement>,
 }
 
 
-export default function SignIn({ signInClick, forgetPasswordClick, signUpClick }: Props) {
+export default function SignIn({ signInClick, signUpClick }: Props) {
   const classes = useStyles();
 
   return (
@@ -85,12 +84,7 @@ export default function SignIn({ signInClick, forgetPasswordClick, signUpClick }
           >
             Sign In
           </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link variant="body2" onClick={() => forgetPasswordClick()}>
-                Forgot password?
-              </Link>
-            </Grid>
+          <Grid container justify="flex-end">
             <Grid item>
               <Link variant="body2" onClick={() => signUpClick()}>
                 Don't have an account? Sign Up
