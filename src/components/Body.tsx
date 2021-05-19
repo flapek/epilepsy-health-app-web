@@ -15,7 +15,6 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Navigation from './navigation/Navigation';
 
-
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
