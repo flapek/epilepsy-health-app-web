@@ -38,20 +38,26 @@ const initialState = {
 }
 
 interface Props {
-  signInClick: (email: string, password: string) => React.MouseEventHandler<HTMLButtonElement>,
+  setToken: (userToken: any) => void,
   signUpClick: () => React.MouseEventHandler<HTMLAnchorElement> & React.MouseEventHandler<HTMLSpanElement>,
 }
 
-export default function SignIn({ signInClick, signUpClick }: Props) {
+export default function SignIn({ setToken, signUpClick }: Props) {
   const classes = useStyles();
   const [state, setState] = useState(initialState)
 
-  const handleEmailChange = (e) => {
+  const handleEmailChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     setState({...state, email: e.target.value})
   }
 
-  const handlePasswordChange = (e) => {
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     setState({...state, password: e.target.value})
+  }
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const token = {"token": "123"}
+    setToken(token);
   }
 
   return (
@@ -64,7 +70,7 @@ export default function SignIn({ signInClick, signUpClick }: Props) {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <TextField
             variant="outlined"
             margin="normal"
@@ -96,7 +102,6 @@ export default function SignIn({ signInClick, signUpClick }: Props) {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={() => signInClick(state.email, state.password)}
           >
             Sign In
           </Button>
