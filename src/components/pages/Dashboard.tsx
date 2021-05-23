@@ -4,8 +4,8 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Chart from '../Chart';
-
-const drawerWidth = 240;
+import { useEffect } from 'react';
+import useData from '../../states/useData';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,13 +28,22 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
   },
   fixedHeight: {
-    height: 240,
+    height: 360,
   },
 }));
 
 export default function Dashboard() {
   const classes = useStyles();
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+  const {data, setData} = useData();
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setData(Math.floor(Math.random() * 100));
+      console.log(data);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [data, setData]);
 
   return (
     <div className={classes.root}>
@@ -42,19 +51,14 @@ export default function Dashboard() {
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
-            <Grid item xs={12} md={8} lg={9}>
+            <Grid item xs={12} md={12} lg={12}>
               <Paper className={fixedHeightPaper}>
-                <Chart />
+                <Chart title="Pulse" data={data}/>
               </Paper>
             </Grid>
-            <Grid item xs={12} md={4} lg={3}>
+            <Grid item xs={12} md={12} lg={12}>
               <Paper className={fixedHeightPaper}>
-                <Chart />
-              </Paper>
-            </Grid>
-            <Grid item xs={12}>
-              <Paper className={fixedHeightPaper}>
-                <Chart />
+                <Chart title="Heart rate" data={data}/>
               </Paper>
             </Grid>
           </Grid>
