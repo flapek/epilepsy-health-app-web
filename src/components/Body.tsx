@@ -96,7 +96,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Body = () => {
+const Body = ({ setToken }: {setToken: (userToken: any) => void}) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
 
@@ -149,7 +149,7 @@ const Body = () => {
               </div>
               <Divider />
               <List>
-              <Navigation/>
+              <Navigation setToken={setToken}/>
               </List>
           </Drawer>
           <main className={classes.content}>

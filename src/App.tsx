@@ -31,7 +31,7 @@ const App = observer(() => {
     <React.Fragment>
       <Router>
       { token ? (
-        <Body/>
+        <Body setToken={setToken}/>
       ) : (
         before()
       )}

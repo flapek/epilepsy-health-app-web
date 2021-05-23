@@ -37,12 +37,11 @@ const initialState = {
   password: ""
 }
 
-interface Props {
+
+export default function SignIn({ setToken, signUpClick } : {
   setToken: (userToken: any) => void,
   signUpClick: () => React.MouseEventHandler<HTMLAnchorElement> & React.MouseEventHandler<HTMLSpanElement>,
-}
-
-export default function SignIn({ setToken, signUpClick }: Props) {
+}) {
   const classes = useStyles();
   const [state, setState] = useState(initialState)
 
