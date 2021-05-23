@@ -4,12 +4,18 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import NoteAddIcon from '@material-ui/icons/NoteAdd';
-import NoteIcon from '@material-ui/icons/Note';import { Avatar, Divider, IconButton, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@material-ui/core';
+import NoteIcon from '@material-ui/icons/Note';
+import { Avatar, IconButton, List, ListItem, ListItemAvatar, ListItemText, ListSubheader, TextareaAutosize, Typography } from '@material-ui/core';
 import React, { useState } from 'react';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+  },
+  listRoot: {
+    backgroundColor: theme.palette.background.paper,
+    position: 'relative',
+    overflow: 'auto',
   },
   appBarSpacer: theme.mixins.toolbar,
   content: {
@@ -42,83 +48,85 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    padding: '10px',
     alignItems: 'center'
   }
 }));
 
 const initialPosts = [
   {
+    id: 1,
+    text: 'Lorem ipsum',
+    date: '02.10.2021'
+  },
+  {
+    id: 2,
+    text: 'Lorem ipsum dolor sit amet',
+    date: '02.10.2021'
+  },
+  {
+    id: 3,
+    text: 'Nunc sit amet efficitur dui. Ut auctor suscipit lorem, id luctus velit lacinia sed.',
+    date: '02.10.2021'
+  },
+  {
+    id: 4,
+    text: 'Nunc sit amet',
+    date: '02.10.2021'
+  },
+  {
+    id: 5,
+    text: 'Ut auctor suscipit lorem, id luctus velit lacinia sed.',
+    date: '02.10.2021'
+  },
+  {
+    id: 6,
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet efficitur dui. Ut auctor suscipit lorem, id luctus velit lacinia sed.',
     date: '02.10.2021'
   },
   {
+    id: 7,
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet efficitur dui. Ut auctor suscipit lorem, id luctus velit lacinia sed.',
     date: '02.10.2021'
   },
   {
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet efficitur dui. Ut auctor suscipit lorem, id luctus velit lacinia sed.',
-    date: '02.10.2021'
-  },
-  {
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet efficitur dui. Ut auctor suscipit lorem, id luctus velit lacinia sed.',
-    date: '02.10.2021'
-  },
-  {
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet efficitur dui. Ut auctor suscipit lorem, id luctus velit lacinia sed.',
-    date: '02.10.2021'
-  },
-  {
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet efficitur dui. Ut auctor suscipit lorem, id luctus velit lacinia sed.',
-    date: '02.10.2021'
-  },
-  {
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet efficitur dui. Ut auctor suscipit lorem, id luctus velit lacinia sed.',
-    date: '02.10.2021'
-  },
-  {
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet efficitur dui. Ut auctor suscipit lorem, id luctus velit lacinia sed.',
-    date: '02.10.2021'
-  },
-  {
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet efficitur dui. Ut auctor suscipit lorem, id luctus velit lacinia sed.',
-    date: '02.10.2021'
-  },
-  {
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet efficitur dui. Ut auctor suscipit lorem, id luctus velit lacinia sed.',
-    date: '02.10.2021'
-  },
-  {
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet efficitur dui. Ut auctor suscipit lorem, id luctus velit lacinia sed.',
-    date: '02.10.2021'
-  },
-  {
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet efficitur dui. Ut auctor suscipit lorem, id luctus velit lacinia sed.',
-    date: '02.10.2021'
-  },
-  {
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet efficitur dui. Ut auctor suscipit lorem, id luctus velit lacinia sed.',
-    date: '02.10.2021'
-  },
-  {
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet efficitur dui. Ut auctor suscipit lorem, id luctus velit lacinia sed.',
-    date: '02.10.2021'
-  },
-  {
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet efficitur dui. Ut auctor suscipit lorem, id luctus velit lacinia sed.',
-    date: '02.10.2021'
-  },
-  {
+    id: 8,
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet efficitur dui. Ut auctor suscipit lorem, id luctus velit lacinia sed.',
     date: '02.10.2021'
   },
 ]
 
+const initialPost = {
+  id: 0,
+  text: '',
+  date: ''
+}
+
 export default function Notes() {
   const classes = useStyles();
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
-  const [posts, setPost] = useState(initialPosts);
+  const [posts, setPosts] = useState(initialPosts);
+  const [post, setPost] = useState(initialPost)
+
+  const itemClick = (id: number) => (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    setPost(posts[id]);
+  }
+
+  const addNote = () => (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const newPost = createPost()
+    setPosts([...posts, newPost]);
+    setPost(newPost);
+  }
+
+  const createPost = () => ({id: posts.length, text: '', date: ''});
+
+  const updateNote = (e: React.SyntheticEvent<HTMLTextAreaElement, Event>) => {
+    setPost({
+      id: post.id,
+      text: '',
+      date: post.date 
+    })
+  };
 
   return (
     <div className={classes.root}>
@@ -128,18 +136,17 @@ export default function Notes() {
           <Grid container spacing={2}>
             <Grid item xs={12} md={12} lg={6}>
               <Paper className={fixedHeightPaper}>
-                <Grid container className={classes.headContainer}>
-                  <Typography>
-                    Notes
-                  </Typography>
-                  <IconButton edge="end"> 
-                    <NoteAddIcon/>
-                  </IconButton>
-                </Grid>
-                <Divider/>
-                <List>
-                  {posts.map(item => (
-                    <ListItem button>
+                <List className={classes.listRoot}>
+                  <ListSubheader className={classes.headContainer}>
+                      <Typography>
+                        Notes
+                      </Typography>
+                      <IconButton edge="end" onClick={addNote()}> 
+                        <NoteAddIcon/>
+                      </IconButton>
+                  </ListSubheader>
+                  {posts.map(item=> (
+                    <ListItem key={item.id} button onClick={ itemClick(item.id)}>
                       <ListItemAvatar>
                         <Avatar>
                           <NoteIcon />
@@ -152,7 +159,8 @@ export default function Notes() {
               </Paper>
             </Grid>
             <Grid item xs={12} md={12} lg={6}>
-              <Paper className={classes.paper}>
+              <Paper className={fixedHeightPaper}>
+                <TextareaAutosize value={post?.text} onVolumeChange={e => updateNote(e)}/>
               </Paper>
             </Grid>
           </Grid>
