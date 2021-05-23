@@ -105,8 +105,8 @@ const Body = ({ setToken }: {setToken: (userToken: any) => void}) => {
   const HeaderView = () => {
     const location = useLocation();
     switch (location.pathname) {
-      case paths.home.path:
-        return paths.home.displayName
+      case paths.notes.path:
+        return paths.notes.displayName
       case paths.dashboard.path:
         return paths.dashboard.displayName
       case paths.account.path:

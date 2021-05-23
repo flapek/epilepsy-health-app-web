@@ -1,7 +1,8 @@
-import Home from '../components/Home';
+import Notes from '../components/pages/Notes';
 import NotFound from '../components/404NotFound';
 import SignIn from '../features/authorization/component/SignIn';
 import SignUp from '../features/authorization/component/SignUp';
+import Dashboard from "../components/pages/Dashboard";
 
 export const paths = {
     signIn: {
@@ -12,9 +13,9 @@ export const paths = {
         path: "/signUp",
         displayName: "Sign Up"
     },
-    home: {
-        path: "/",
-        displayName: "Home"
+    notes: {
+        path: "/notes",
+        displayName: "Notes"
     },
     dashboard: {
         path: "/dashboard",
@@ -40,12 +41,12 @@ export const routes = [
         component: SignUp
     },
     {
-        path: paths.home.path,
-        component: Home
+        path: paths.notes.path,
+        component: Notes
     },
     {
         path: paths.dashboard.path,
-        component: NotFound
+        component: Dashboard
     },
     {
         path: paths.account.path,

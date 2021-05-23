@@ -2,16 +2,16 @@ import { withRouter } from "react-router-dom";
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import HomeIcon from '@material-ui/icons/Home';
+import NotesIcon from '@material-ui/icons/Notes';
 import { paths } from "../../common/Common";
 
-const HomeListItem = withRouter(({ history }) => (
-    <ListItem button onClick={() => history.push(paths.home.path) }>
+const NotesListItem = withRouter(({ history }) => (
+    <ListItem button onClick={() => history.push(paths.notes.path) }>
       <ListItemIcon>
-        <HomeIcon />
+        <NotesIcon />
       </ListItemIcon>
-      <ListItemText primary="Home" />
+      <ListItemText primary="Notes" />
     </ListItem>
 ));
 
-export default HomeListItem;
+export default NotesListItem;
