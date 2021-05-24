@@ -5,22 +5,14 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import NoteAddIcon from '@material-ui/icons/NoteAdd';
 import NoteIcon from '@material-ui/icons/Note';
-import { Avatar, IconButton, List, ListItem, ListItemAvatar, ListItemText, ListSubheader, TextareaAutosize, Typography } from '@material-ui/core';
+import { Avatar, TextField, IconButton, List, ListItem, ListItemAvatar, ListItemText, ListSubheader, Typography } from '@material-ui/core';
 import React, { useState } from 'react';
+import { DefaultPage } from './DefaultPage';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-  },
   listRoot: {
     backgroundColor: theme.palette.background.paper,
     position: 'relative',
-    overflow: 'auto',
-  },
-  appBarSpacer: theme.mixins.toolbar,
-  content: {
-    flexGrow: 1,
-    height: '100vh',
     overflow: 'auto',
   },
   container: {
@@ -120,7 +112,7 @@ export default function Notes() {
 
   const createPost = () => ({id: posts.length, text: '', date: ''});
 
-  const updateNote = (e: React.SyntheticEvent<HTMLTextAreaElement, Event>) => {
+  const updateNote = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     setPost({
       id: post.id,
       text: '',
@@ -129,43 +121,40 @@ export default function Notes() {
   };
 
   return (
-    <div className={classes.root}>
-      <main className={classes.content}>
-        <div className={classes.appBarSpacer} />
-        <Container maxWidth="lg" className={classes.container}>
-          <Grid container spacing={2}>
-            <Grid item xs={12} md={12} lg={6}>
-              <Paper className={fixedHeightPaper}>
-                <List className={classes.listRoot}>
-                  <ListSubheader className={classes.headContainer}>
-                      <Typography>
-                        Notes
-                      </Typography>
-                      <IconButton edge="end" onClick={addNote()}> 
-                        <NoteAddIcon/>
-                      </IconButton>
-                  </ListSubheader>
-                  {posts.map(item=> (
-                    <ListItem key={item.id} button onClick={ itemClick(item.id)}>
-                      <ListItemAvatar>
-                        <Avatar>
-                          <NoteIcon />
-                        </Avatar>
-                      </ListItemAvatar>
-                      <ListItemText primary={`${item.text.substr(0, 45)}...`} secondary={item.date} />
-                    </ListItem>
-                  ))}
-                </List>
-              </Paper>
-            </Grid>
-            <Grid item xs={12} md={12} lg={6}>
-              <Paper className={fixedHeightPaper}>
-                <TextareaAutosize value={post?.text} onVolumeChange={e => updateNote(e)}/>
-              </Paper>
-            </Grid>
+    <DefaultPage>
+      <Container maxWidth="lg" className={classes.container}>
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={12} lg={6}>
+            <Paper className={fixedHeightPaper}>
+              <List className={classes.listRoot}>
+                <ListSubheader className={classes.headContainer}>
+                    <Typography>
+                      Notes
+                    </Typography>
+                    <IconButton edge="end" onClick={addNote()}> 
+                      <NoteAddIcon/>
+                    </IconButton>
+                </ListSubheader>
+                {posts.map(item=> (
+                  <ListItem key={item.id} button onClick={ itemClick(item.id)}>
+                    <ListItemAvatar>
+                      <Avatar>
+                        <NoteIcon />
+                      </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText primary={`${item.text.substr(0, 45)}...`} secondary={item.date} />
+                  </ListItem>
+                ))}
+              </List>
+            </Paper>
           </Grid>
-        </Container>
-      </main>
-    </div>
+          <Grid item xs={12} md={12} lg={6}>
+            <Paper className={fixedHeightPaper}>
+              <TextField id="outlined-multiline-static" label={post?.date} fullWidth multiline rows="" variant="filled" onChange={e => updateNote(e)} defaultValue={post?.text}/>
+            </Paper>
+          </Grid>
+        </Grid>
+      </Container>
+    </DefaultPage>
   );
 }

@@ -3,6 +3,7 @@ import NotFound from '../components/404NotFound';
 import SignIn from '../features/authorization/component/SignIn';
 import SignUp from '../features/authorization/component/SignUp';
 import Dashboard from "../components/pages/Dashboard";
+import Account from '../components/pages/Account';
 
 export const paths = {
     signIn: {
@@ -50,7 +51,7 @@ export const routes = [
     },
     {
         path: paths.account.path,
-        component: NotFound
+        component: Account
     },
     {
         path: paths.notFound.path,

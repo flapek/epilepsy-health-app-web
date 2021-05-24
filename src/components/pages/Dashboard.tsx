@@ -6,17 +6,9 @@ import Paper from '@material-ui/core/Paper';
 import Chart from '../Chart';
 import { useEffect } from 'react';
 import useData from '../../states/useData';
+import { DefaultPage } from './DefaultPage';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-  },
-  appBarSpacer: theme.mixins.toolbar,
-  content: {
-    flexGrow: 1,
-    height: '100vh',
-    overflow: 'auto',
-  },
   container: {
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
@@ -46,24 +38,21 @@ export default function Dashboard() {
   }, [data, setData]);
 
   return (
-    <div className={classes.root}>
-      <main className={classes.content}>
-        <div className={classes.appBarSpacer} />
-        <Container maxWidth="lg" className={classes.container}>
-          <Grid container spacing={3}>
-            <Grid item xs={12} md={12} lg={12}>
-              <Paper className={fixedHeightPaper}>
-                <Chart title="Pulse" data={data}/>
-              </Paper>
-            </Grid>
-            <Grid item xs={12} md={12} lg={12}>
-              <Paper className={fixedHeightPaper}>
-                <Chart title="Heart rate" data={data}/>
-              </Paper>
-            </Grid>
+    <DefaultPage>
+      <Container maxWidth="lg" className={classes.container}>
+        <Grid container spacing={3}>
+          <Grid item xs={12} md={12} lg={12}>
+            <Paper className={fixedHeightPaper}>
+              <Chart title="Pulse" data={data}/>
+            </Paper>
           </Grid>
-        </Container>
-      </main>
-    </div>
+          <Grid item xs={12} md={12} lg={12}>
+            <Paper className={fixedHeightPaper}>
+              <Chart title="Heart rate" data={data}/>
+            </Paper>
+          </Grid>
+        </Grid>
+      </Container>
+    </DefaultPage>
   );
 }
