@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import NoteAddIcon from '@material-ui/icons/NoteAdd';
 import NoteIcon from '@material-ui/icons/Note';
-import { Avatar, TextField, IconButton, List, ListItem, ListItemAvatar, ListItemText, ListSubheader, Typography } from '@material-ui/core';
+import { Avatar, FormControl, IconButton, Input, InputLabel, List, ListItem, ListItemAvatar, ListItemText, ListSubheader, Typography } from '@material-ui/core';
 import React, { useState } from 'react';
 import { DefaultPage } from './DefaultPage';
 
@@ -87,37 +87,26 @@ const initialPosts = [
   },
 ]
 
-const initialPost = {
-  id: 0,
-  text: '',
-  date: ''
-}
 
 export default function Notes() {
   const classes = useStyles();
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   const [posts, setPosts] = useState(initialPosts);
-  const [post, setPost] = useState(initialPost)
+  let post = React.useRef('')
 
   const itemClick = (id: number) => (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    setPost(posts[id]);
+    post.current = posts[id].text;
   }
 
   const addNote = () => (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     const newPost = createPost()
     setPosts([...posts, newPost]);
-    setPost(newPost);
   }
 
   const createPost = () => ({id: posts.length, text: '', date: ''});
 
   const updateNote = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-    setPost({
-      id: post.id,
-      text: '',
-      date: post.date 
-    })
   };
 
   return (
@@ -150,7 +139,9 @@ export default function Notes() {
           </Grid>
           <Grid item xs={12} md={12} lg={6}>
             <Paper className={fixedHeightPaper}>
-              <TextField id="outlined-multiline-static" label={post?.date} fullWidth multiline rows="" variant="filled" onChange={e => updateNote(e)} defaultValue={post?.text}/>
+              <FormControl>
+                <Input id="my-input" multiline disableUnderline ref={post} />
+              </FormControl>            
             </Paper>
           </Grid>
         </Grid>
