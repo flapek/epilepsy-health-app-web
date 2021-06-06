@@ -87,7 +87,6 @@ const initialPosts = [
   },
 ]
 
-
 export default function Notes() {
   const classes = useStyles();
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
