@@ -58,7 +58,7 @@ export default function Account() {
   return (
       <DefaultPage>
           <Container maxWidth="lg" className={classes.container}>
-          <form autoComplete="off" noValidate >
+            <form autoComplete="off" noValidate >
               <Card>
                 <CardHeader
                   subheader="The information can be edited"
