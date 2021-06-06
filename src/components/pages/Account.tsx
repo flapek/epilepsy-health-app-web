@@ -42,6 +42,7 @@ export default function Account() {
       firstName: 'Katarina',
       lastName: 'Smith',
       email: 'demo@devias.io',
+      password: 'asddwqdas',
       phone: '',
       age: '20',
       weight: '55',
@@ -79,6 +80,11 @@ export default function Account() {
                         <TextField fullWidth label="Email Address" name="email" 
                           onChange={handleChange} value={values.email}
                           variant="outlined"/>
+                      </Grid>
+                      <Grid item md={6} xs={12}>
+                        <TextField fullWidth label="Password" name="password" 
+                          onChange={handleChange} value={values.password}
+                          variant="outlined" type="password"/>
                       </Grid>
                       <Grid item md={6} xs={12}>
                         <TextField fullWidth label="Age" name="age" 
