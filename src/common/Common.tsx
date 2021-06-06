@@ -19,7 +19,7 @@ export const paths = {
         displayName: "Notes"
     },
     dashboard: {
-        path: "/dashboard",
+        path: "/",
         displayName: "Dashboard"
     },
     account: {
