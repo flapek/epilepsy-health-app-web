@@ -93,7 +93,7 @@ export default function Notes() {
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   const [posts, setPosts] = useState(initialPosts);
-  let post = React.useRef('')
+  let [post, setPost] = useState('');
 
   const itemClick = (id: number) => (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     post.current = posts[id].text;
@@ -140,7 +140,7 @@ export default function Notes() {
           <Grid item xs={12} md={12} lg={6}>
             <Paper className={fixedHeightPaper}>
               <FormControl>
-                <Input id="my-input" multiline disableUnderline ref={post} />
+                <Input id="my-input" multiline disableUnderline value={post} onChange={handleChange} />
               </FormControl>            
             </Paper>
           </Grid>
