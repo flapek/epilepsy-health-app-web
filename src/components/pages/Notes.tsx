@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import NoteAddIcon from '@material-ui/icons/NoteAdd';
 import NoteIcon from '@material-ui/icons/Note';
-import { Avatar, FormControl, IconButton, Input, List, ListItem, ListItemAvatar, ListItemText, ListSubheader, Typography } from '@material-ui/core';
+import { Avatar, Box, Button, Card, CardContent, CardHeader, Divider, FormControl, IconButton, Input, List, ListItem, ListItemAvatar, ListItemText, ListSubheader, Typography } from '@material-ui/core';
 import React, { useState } from 'react';
 import { DefaultPage } from './DefaultPage';
 
@@ -93,10 +93,16 @@ export default function Notes() {
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   const [posts, setPosts] = useState(initialPosts);
-  let [post, setPost] = useState('');
+  let [post, setPost] = useState({
+    id: 0,
+    text: '',
+    date: ''
+  });
 
+  const createPost = () => ({id: posts.length, text: '', date: ''});
+  
   const itemClick = (id: number) => (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    post.current = posts[id].text;
+    setPost(posts[id]);
   }
 
   const addNote = () => (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -104,10 +110,9 @@ export default function Notes() {
     setPosts([...posts, newPost]);
   }
 
-  const createPost = () => ({id: posts.length, text: '', date: ''});
-
-  const updateNote = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-  };
+  function handleChange(event) {
+    setPost(event.target.value);
+  }
 
   return (
     <DefaultPage>
@@ -139,8 +144,26 @@ export default function Notes() {
           </Grid>
           <Grid item xs={12} md={12} lg={6}>
             <Paper className={fixedHeightPaper}>
+              <form autoComplete="off" noValidate>
+                <Card>
+                  <CardHeader subheader={post.date} title="Note"/>
+                  <Divider />
+                  <CardContent>
+                    <Grid container spacing={3}>
+                      <Input id="my-input" multiline disableUnderline 
+                      autoFocus value={post.text} onChange={handleChange} />
+                    </Grid>
+                  </CardContent>
+                  <Divider />
+                  <Box>
+                    <Button color="primary" variant="contained">
+                      Save details
+                    </Button>
+                  </Box>
+                </Card>
+              </form>
+
               <FormControl>
-                <Input id="my-input" multiline disableUnderline value={post} onChange={handleChange} />
               </FormControl>            
             </Paper>
           </Grid>
