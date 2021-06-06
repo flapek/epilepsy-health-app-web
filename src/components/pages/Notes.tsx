@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import NoteAddIcon from '@material-ui/icons/NoteAdd';
 import NoteIcon from '@material-ui/icons/Note';
-import { Avatar, FormControl, IconButton, Input, InputLabel, List, ListItem, ListItemAvatar, ListItemText, ListSubheader, Typography } from '@material-ui/core';
+import { Avatar, FormControl, IconButton, Input, List, ListItem, ListItemAvatar, ListItemText, ListSubheader, Typography } from '@material-ui/core';
 import React, { useState } from 'react';
 import { DefaultPage } from './DefaultPage';
 
