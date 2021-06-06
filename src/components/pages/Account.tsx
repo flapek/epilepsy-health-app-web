@@ -1,6 +1,6 @@
-import { Container, FormControl, FormHelperText, Grid, Input, InputLabel, makeStyles, Paper, TextField  } from "@material-ui/core";
+import { Box, Button, Card, CardContent, CardHeader, Container, Divider, Grid, makeStyles, TextField  } from "@material-ui/core";
 import { DefaultPage } from "./DefaultPage";
-import clsx from 'clsx';
+import { useState } from "react";
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -37,30 +37,69 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Account() {
     const classes = useStyles();
-    const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+
+    const [values, setValues] = useState({
+      firstName: 'Katarina',
+      lastName: 'Smith',
+      email: 'demo@devias.io',
+      phone: '',
+      age: '20',
+      weight: '55',
+    });
+  
+    function handleChange(event) {
+    setValues({
+      ...values,
+      [event.target.name]: event.target.value
+    });
+  }
 
     return (
         <DefaultPage>
             <Container maxWidth="lg" className={classes.container}>
-                <Grid container spacing={2}>
-                    {/* <Grid item xs={8} md={8} lg={8}>
-                        <Paper className={fixedHeightPaper}>
-                            <form className={classes.root} noValidate>
-                                <TextField required id="standard-required" label="Required" defaultValue="Hello World" />
-                                <TextField disabled id="standard-disabled" label="Disabled" defaultValue="Hello World" />
-                                <TextField id="standard-password-input" label="Password" type="password" autoComplete="current-password" />
-                            </form>
-                        </Paper>
-                    </Grid> */}
-                    <Grid item xs={8} md={8} lg={8}>
-                        <Paper className={fixedHeightPaper}>
-                          <FormControl>
-                            <InputLabel htmlFor="my-input">Email address</InputLabel>
-                            <Input id="my-input" aria-describedby="my-helper-text" />
-                          </FormControl>
-                        </Paper>
+            <form autoComplete="off" noValidate >
+                <Card>
+                  <CardHeader
+                    subheader="The information can be edited"
+                    title="Profile"
+                  />
+                  <Divider />
+                  <CardContent>
+                    <Grid container spacing={3}>
+                      <Grid item md={6} xs={12}>
+                        <TextField fullWidth helperText="Please specify the first name"
+                          label="First name" name="firstName" onChange={handleChange}
+                          value={values.firstName} variant="outlined"/>
+                      </Grid>
+                      <Grid item md={6} xs={12}>
+                        <TextField fullWidth label="Last name" name="lastName"
+                          onChange={handleChange} value={values.lastName} variant="outlined"/>
+                      </Grid>
+                      <Grid item md={6} xs={12}>
+                        <TextField fullWidth label="Email Address" name="email" 
+                          onChange={handleChange} value={values.email}
+                          variant="outlined"/>
+                      </Grid>
+                      <Grid item md={6} xs={12}>
+                        <TextField fullWidth label="Age" name="age" 
+                          onChange={handleChange} value={values.age}
+                          variant="outlined"/>
+                      </Grid>
+                      <Grid item md={6} xs={12}>
+                        <TextField fullWidth label="Weight" name="weight" 
+                          onChange={handleChange} value={values.weight}
+                          variant="outlined"/>
+                      </Grid>
                     </Grid>
-                </Grid>
+                  </CardContent>
+                  <Divider />
+                  <Box>
+                    <Button color="primary" variant="contained">
+                      Save details
+                    </Button>
+                  </Box>
+                </Card>
+              </form>
             </Container>
         </DefaultPage>
     );
