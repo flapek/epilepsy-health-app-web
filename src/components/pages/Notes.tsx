@@ -156,7 +156,7 @@ export default function Notes() {
                   <Divider />
                   <Box>
                     <Button color="primary" variant="contained">
-                      Save details
+                      Save
                     </Button>
                   </Box>
                 </Card>
