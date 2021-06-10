@@ -44,6 +44,7 @@ export default function SignIn({ setToken, signUpClick } : {
 }) {
   const classes = useStyles();
   const [state, setState] = useState(initialState)
+  const store = useContext(RootStoreContext);
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     setState({...state, email: e.target.value})
@@ -55,7 +56,7 @@ export default function SignIn({ setToken, signUpClick } : {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
+
     const token = {"token": "123"}
     setToken(token);
   }
