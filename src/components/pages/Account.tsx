@@ -35,15 +35,16 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+
 export default function Account() {
   const classes = useStyles();
 
   const [values, setValues] = useState({
-    firstName: 'Katarina',
-    lastName: 'Smith',
+    firstName: 'Marcin',
+    lastName: 'Filapek',
     email: 'demo@devias.io',
     password: 'asddwqdas',
-    phone: '',
+    phone: '999 999 999',
     age: '20',
     weight: '55',
   });
@@ -54,11 +55,11 @@ export default function Account() {
       [event.target.name]: event.target.value
     });
   }
-
+  
   return (
       <DefaultPage>
           <Container maxWidth="lg" className={classes.container}>
-            <form autoComplete="off" noValidate >
+            <form autoComplete="off" noValidate>
               <Card>
                 <CardHeader
                   subheader="The information can be edited"
