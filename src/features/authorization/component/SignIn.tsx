@@ -55,6 +55,7 @@ export default function SignIn({ setToken, signUpClick } : {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    
     const token = {"token": "123"}
     setToken(token);
   }
