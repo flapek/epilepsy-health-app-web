@@ -16,6 +16,7 @@ export type UserActionType = {
     updateUser: (user: User) => void;
     getUserById: (id: number) => User;
     getUserByEmail: (email: string) => User;
+    userExist: (email: string, password: string) => number;
 };
 
 export type UserStoreSchema = {} & UserType & UserActionType

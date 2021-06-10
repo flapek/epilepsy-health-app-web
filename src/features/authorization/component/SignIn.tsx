@@ -57,9 +57,13 @@ export default function SignIn({ setToken, signUpClick } : {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    
+    let id = store.userStore.userExist(state.email, state.password);
 
-    const token = {"token": "123"}
-    setToken(token);
+    if (id > 0) {
+      const token = {"token": "123"}
+      setToken(token);
+    }
   }
 
   return (
