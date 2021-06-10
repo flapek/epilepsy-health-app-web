@@ -145,12 +145,12 @@ export default function Notes() {
             <Paper className={fixedHeightPaper}>
               <form autoComplete="off" noValidate>
                 <Card>
-                  <CardHeader subheader={post.date} title="Note"/>
+                  <CardHeader subheader={post?.date} title="Note"/>
                   <Divider />
                   <CardContent>
                     <Grid container spacing={3}>
                       <Input id="my-input" multiline disableUnderline 
-                      autoFocus value={post.text} onChange={handleChange} />
+                      autoFocus value={post?.text} onChange={handleChange} />
                     </Grid>
                   </CardContent>
                   <Divider />
