@@ -24,7 +24,7 @@ const initialValues: UserType = {
   ]
 }
     
-const LoginContext = () => {
+const UserContext = () => {
     const store = useLocalObservable<UserStoreSchema>(() => ({
     /*observables*/
     ...initialValues,
@@ -46,4 +46,4 @@ const LoginContext = () => {
   return store;
 };
 
-export default LoginContext;
+export default UserContext;
