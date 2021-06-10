@@ -42,8 +42,12 @@ const UserContext = () => {
     },
 
     userExist(email: string, password: string): number {
-      const user = store.users.find((user) => user.email === email && user.pasword === password);
-      return user?.id && 0;
+      const user: User = store.users.find((user) => {
+        if(user.email === email && user.pasword === password)
+          return user;
+      });
+      const id: number = user?.id;
+      return id;
     }   
   }));
 
