@@ -30,12 +30,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-interface Props {
+export default function SignUp({signInClick, signUpClick}: {
   signInClick: () => React.MouseEventHandler<HTMLButtonElement>,
   signUpClick: () => React.MouseEventHandler<HTMLAnchorElement> & React.MouseEventHandler<HTMLSpanElement>,
-}
-
-export default function SignUp({signInClick, signUpClick}: Props) {
+}) {
   const classes = useStyles();
 
   return (
