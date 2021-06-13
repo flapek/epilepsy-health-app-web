@@ -1,6 +1,8 @@
 import { Box, Button, Card, CardContent, CardHeader, Container, Divider, Grid, makeStyles, TextField  } from "@material-ui/core";
 import { DefaultPage } from "./DefaultPage";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { RootStoreContext } from "../../store/rootStore";
+import { GetUserIdFromLocalStorage } from "../../utilities/localStorageService";
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -38,16 +40,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Account() {
   const classes = useStyles();
-
-  const [values, setValues] = useState({
-    firstName: 'Marcin',
-    lastName: 'Filapek',
-    email: 'demo@devias.io',
-    password: 'asddwqdas',
-    phone: '999 999 999',
-    age: '20',
-    weight: '55',
-  });
+  const store = useContext(RootStoreContext);
+  const user = store.userStore.getUserById(GetUserIdFromLocalStorage());
+  const [values, setValues] = useState(user);
 
   function handleChange(event) {
     setValues({

@@ -1,6 +1,5 @@
 import React from "react";
 import { Switch, Route, useLocation } from "react-router-dom";
-import { paths, routes } from '../common/Common'
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -14,6 +13,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Navigation from './navigation/Navigation';
+import { paths, routes } from "../utilities/common";
 
 const drawerWidth = 240;
 
@@ -96,73 +96,73 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Body = ({ setToken }: {setToken: (userToken: any) => void}) => {
+function Body({ setToken }: { setToken: (userToken: any) => void; }) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
 
   const handleDrawerOpenClose = () => setOpen(!open);
-  
+
   const HeaderView = () => {
     const location = useLocation();
     switch (location.pathname) {
       case paths.notes.path:
-        return paths.notes.displayName
+        return paths.notes.displayName;
       case paths.dashboard.path:
-        return paths.dashboard.displayName
+        return paths.dashboard.displayName;
       case paths.account.path:
-        return paths.account.displayName
+        return paths.account.displayName;
       default:
         return "";
     }
-  }
+  };
 
   return (
-      <div className={classes.root}>
-          <CssBaseline />
-          <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
-              <Toolbar className={classes.toolbar}>
-              <IconButton
-                  edge="start"
-                  color="inherit"
-                  aria-label="open drawer"
-                  onClick={handleDrawerOpenClose}
-                  className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
-              >
-                  <MenuIcon />
-              </IconButton>
-              <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-                  {HeaderView()}
-              </Typography>
-              </Toolbar>
-          </AppBar>
-          <Drawer
-              variant="permanent"
-              classes={{
-              paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
-              }}
-              open={open}
+    <div className={classes.root}>
+      <CssBaseline />
+      <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
+        <Toolbar className={classes.toolbar}>
+          <IconButton
+            edge="start"
+            color="inherit"
+            aria-label="open drawer"
+            onClick={handleDrawerOpenClose}
+            className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
           >
-              <div className={classes.toolbarIcon}>
-              <IconButton onClick={handleDrawerOpenClose}>
-                  <ChevronLeftIcon />
-              </IconButton>
-              </div>
-              <Divider />
-              <List>
-              <Navigation setToken={setToken}/>
-              </List>
-          </Drawer>
-          <main className={classes.content}>
-              <div className={classes.appBarSpacer} />
-              <Switch>
-                {routes.map(({path, component}, i)=>{
-                    return (
-                      <Route exact key={i} path={path} component={component}/>
-                    );
-                })}
-              </Switch>
-          </main>
-      </div>
+            <MenuIcon />
+          </IconButton>
+          <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+            {HeaderView()}
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <Drawer
+        variant="permanent"
+        classes={{
+          paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
+        }}
+        open={open}
+      >
+        <div className={classes.toolbarIcon}>
+          <IconButton onClick={handleDrawerOpenClose}>
+            <ChevronLeftIcon />
+          </IconButton>
+        </div>
+        <Divider />
+        <List>
+          <Navigation setToken={setToken} />
+        </List>
+      </Drawer>
+      <main className={classes.content}>
+        <div className={classes.appBarSpacer} />
+        <Switch>
+          {routes.map(({ path, component }, i) => {
+            return (
+              <Route exact key={i} path={path} component={component} />
+            );
+          })}
+        </Switch>
+      </main>
+    </div>
   );
 }
 

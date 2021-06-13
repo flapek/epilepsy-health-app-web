@@ -1,5 +1,6 @@
 import { User, UserStoreSchema, UserType } from "./userType";
 import { useLocalObservable } from "mobx-react-lite";
+import { SaveUserIdToLocalStorage } from "../../utilities/localStorageService";
 
 const initialValues: UserType = {
   users: [
@@ -8,7 +9,7 @@ const initialValues: UserType = {
       email: 'test@test.com',
       firstName: 'test',
       lastName: 'test',
-      pasword: 'test',
+      password: 'test',
       age: 10,
       weight: 40
     },
@@ -17,7 +18,7 @@ const initialValues: UserType = {
       email: 'test2@test.com',
       firstName: 'test2',
       lastName: 'test2',
-      pasword: 'test2',
+      password: 'test2',
       age: 12,
       weight: 42
     }
@@ -42,11 +43,8 @@ const UserContext = () => {
     },
 
     userExist(email: string, password: string): number {
-      const user: User = store.users.find((user) => {
-        if(user.email === email && user.pasword === password)
-          return user;
-      });
-      const id: number = user?.id;
+      const id: number = store.users.find((user) => user.email === email && user.password === password)?.id;
+      SaveUserIdToLocalStorage(id);
       return id;
     }   
   }));
